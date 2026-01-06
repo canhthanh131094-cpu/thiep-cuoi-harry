@@ -8,31 +8,31 @@
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  background:#f7f2ee;
+  margin:0;
 }
-.container {
-  max-width: 500px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-}
-h1 { color: #c0392b; }
-label { display:block; margin-top:10px; text-align:left; }
-input, select, button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
+.card {
+  max-width:520px;
+  margin:20px auto;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
 }
 button {
-  background:#c0392b;
-  color:white;
+  padding:10px;
+  width:100%;
+  background:#b76e79;
+  color:#fff;
   border:none;
-  margin-top:15px;
   font-size:16px;
+  margin-top:10px;
   cursor:pointer;
+}
+input, select {
+  width:100%;
+  padding:10px;
+  margin-top:5px;
 }
 .lang button {
   width:auto;
@@ -43,7 +43,7 @@ button {
 
 <body>
 
-<div class="container">
+<div class="card">
 
 <!-- 🌐 LANGUAGE -->
 <div class="lang">
@@ -52,47 +52,46 @@ button {
   <button onclick="setLang('zh')">🇨🇳 中文</button>
 </div>
 
-<h1 id="title">Thiệp Cưới</h1>
+<h1 id="title">Thiệp Mời Lễ Cưới</h1>
+<h2 id="names">💍 Cảnh Thành & 💐 Đặng Loan</h2>
 
-<p id="names">💍 Chú rể & Cô dâu</p>
+<!-- 📸 IMAGE -->
+<img src="anhcuoi.jpg" alt="Wedding Photo"
+     style="width:100%;border-radius:12px;margin:15px 0;">
+
+<!-- 🎵 MUSIC -->
+<audio controls autoplay loop style="width:100%">
+  <source src="nhaccuoi.mp3" type="audio/mpeg">
+</audio>
 
 <p id="time">⏰ Thời gian: 10:30 – Thứ 7, 07/02/2026</p>
 <p id="place">📍 Địa điểm: Xóm 2, xã Yên Thành, Nghệ An</p>
 
-<!-- 🎵 MUSIC -->
-<audio autoplay loop controls style="width:100%; margin:10px 0">
-  <source src="nhaccuoi.mp3" type="audio/mpeg">
-</audio>
-
-<!-- 🗺 GOOGLE MAP -->
+<!-- 🗺 MAP -->
 <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d916.1961618975104!2d105.44576393415441!3d19.012184735595962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313767e78c0f22f5%3A0x3618131dece75d2e!2zUGjDsm5nIGtow6FtIGNodXnDqm4gc-G6o24gQsOhYyBT4bu5IE5n4bujaQ!5e0!3m2!1svi!2s!4v1767626746999"
-  width="100%"
-  height="300"
-  style="border:0; border-radius:12px"
-  allowfullscreen=""
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d916.1961618975104!2d105.44576393415441!3d19.012184735595962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1"
+  width="100%" height="280" style="border:0;border-radius:12px;"
   loading="lazy">
 </iframe>
 
-<!-- 📝 FORM -->
-<h2 id="confirm">Xác nhận tham dự</h2>
+<h3 id="confirm">Xác nhận tham dự</h3>
 
+<!-- ✅ GOOGLE FORM -->
 <form
   action="https://docs.google.com/forms/d/e/1FAIpQLSes1GuX-Zzefo0YcbXN3iocZzHySsr63n_SBYuozVbK3qPBHQ/formResponse"
   method="POST"
   target="hidden_iframe"
-  onsubmit="alert('Đã gửi xác nhận!');"
+  onsubmit="alert('Đã gửi xác nhận thành công!');"
 >
 
 <label id="lblName">Họ tên</label>
-<input type="text" name="entry.1095284742" required>
+<input name="entry.1095284742" required>
 
 <label id="lblPhone">Số điện thoại</label>
-<input type="text" name="entry.805429574" required>
+<input name="entry.805429574" required>
 
 <label id="lblAttend">Tham dự</label>
 <select name="entry.1675628208" required>
-  <option value="">-- Chọn --</option>
   <option value="Yes">Tham dự</option>
   <option value="No">Không tham dự</option>
 </select>
@@ -105,42 +104,33 @@ button {
 </div>
 
 <script>
-function setLang(lang) {
-  if(lang==='vi'){
-    title.innerText="Thiệp Cưới";
-    names.innerText="💍 Chú rể & Cô dâu";
-    time.innerText="⏰ Thời gian: 10:30 – Thứ 7, 07/02/2026";
-    place.innerText="📍 Địa điểm: Xóm 2, xã Yên Thành, Nghệ An";
-    confirm.innerText="Xác nhận tham dự";
-    lblName.innerText="Họ tên";
-    lblPhone.innerText="Số điện thoại";
-    lblAttend.innerText="Tham dự";
-    submitBtn.innerText="Gửi xác nhận";
-  }
-  if(lang==='en'){
-    title.innerText="Wedding Invitation";
-    names.innerText="💍 Groom & Bride";
-    time.innerText="⏰ Time: 10:30 AM – Saturday, Feb 7, 2026";
-    place.innerText="📍 Location: Yen Thanh Commune, Nghe An";
-    confirm.innerText="RSVP";
-    lblName.innerText="Full Name";
-    lblPhone.innerText="Phone Number";
-    lblAttend.innerText="Attendance";
-    submitBtn.innerText="Submit";
-  }
-  if(lang==='zh'){
-    title.innerText="婚礼邀请函";
-    names.innerText="💍 新郎 & 新娘";
-    time.innerText="⏰ 时间：2026年2月7日 周六 10:30";
-    place.innerText="📍 地点：越南 义安省 安城县";
-    confirm.innerText="确认出席";
-    lblName.innerText="姓名";
-    lblPhone.innerText="电话号码";
-    lblAttend.innerText="是否出席";
-    submitBtn.innerText="提交确认";
-  }
-}
-</script>
-
-</body>
-</html>
+function setLang(lang){
+ if(lang==='vi'){
+  title.innerText='Thiệp Mời Lễ Cưới';
+  time.innerText='⏰ Thời gian: 10:30 – Thứ 7, 07/02/2026';
+  place.innerText='📍 Địa điểm: Xóm 2, xã Yên Thành, Nghệ An';
+  confirm.innerText='Xác nhận tham dự';
+  lblName.innerText='Họ tên';
+  lblPhone.innerText='Số điện thoại';
+  lblAttend.innerText='Tham dự';
+  submitBtn.innerText='Gửi xác nhận';
+ }
+ if(lang==='en'){
+  title.innerText='Wedding Invitation';
+  time.innerText='⏰ Time: 10:30 AM – Saturday, Feb 7, 2026';
+  place.innerText='📍 Location: Yen Thanh, Nghe An, Vietnam';
+  confirm.innerText='RSVP';
+  lblName.innerText='Full Name';
+  lblPhone.innerText='Phone';
+  lblAttend.innerText='Attendance';
+  submitBtn.innerText='Submit';
+ }
+ if(lang==='zh'){
+  title.innerText='婚礼邀请函';
+  time.innerText='⏰ 时间：2026年2月7日 周六 10:30';
+  place.innerText='📍 地点：越南 义安省 安城县';
+  confirm.innerText='确认出席';
+  lblName.innerText='姓名';
+  lblPhone.innerText='电话';
+  lblAttend.innerText='是否出席';
+  submitBtn.innerTex
