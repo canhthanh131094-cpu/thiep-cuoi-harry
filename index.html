@@ -1,245 +1,165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thiệp cưới</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fafafa; color:#222; }
-    header { background:#fff; padding:12px 16px; box-shadow:0 1px 4px rgba(0,0,0,0.06); display:flex; align-items:center; justify-content:space-between;}
-    .lang-buttons button { margin-left:8px; }
-    main { padding:20px; max-width:900px; margin:20px auto; }
-    .gallery img { max-width:100%; height:auto; border-radius:8px; display:block; margin-bottom:12px; }
-    .controls { margin:12px 0; }
-    .rsvp { background:#fff; padding:16px; border-radius:8px; box-shadow:0 1px 6px rgba(0,0,0,0.04); }
-    .rsvp label { display:block; margin:8px 0 4px; }
-    .rsvp input, .rsvp textarea { width:100%; padding:8px; box-sizing:border-box; }
-    #status { margin-top:8px; font-weight:600; }
-    #playOverlay { position:fixed; left:0; right:0; top:0; bottom:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.45); color:#fff; z-index:9999; }
-    #playOverlay button { font-size:18px; padding:12px 18px; border-radius:8px; }
-    .hidden-iframe { display:none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation - Cảnh Thành & Đặng Loan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; text-align: center; background-color: #fdf5f5; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { font-family: 'Dancing Script', cursive; color: #d63384; font-size: 2.5em; }
+        .photo-frame { width: 100%; border-radius: 15px; margin: 20px 0; border: 5px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .lang-switch { margin-bottom: 20px; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; background: #d63384; color: white; font-weight: bold; }
+        form { display: flex; flex-direction: column; text-align: left; gap: 10px; margin-top: 20px; }
+        input, select { padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        #submit-btn { background: #28a745; margin-top: 10px; }
+    </style>
 </head>
 <body>
-  <header>
-    <div>
-      <strong data-i18n="title">Thiệp cưới</strong>
+
+<div class="container">
+    <div class="lang-switch">
+        <button onclick="changeLang('vi')">🇻🇳 VI</button>
+        <button onclick="changeLang('en')">🇬🇧 EN</button>
+        <button onclick="changeLang('zh')">🇨🇳 中文</button>
     </div>
-    <div class="lang-buttons">
-      <span data-i18n="lang_label">Ngôn ngữ:</span>
-      <button id="btn-vi">Tiếng Việt</button>
-      <button id="btn-en">English</button>
-      <button id="btn-zh">中文</button>
-    </div>
-  </header>
 
-  <main>
-    <section class="gallery">
-      <h2 data-i18n="gallery_title">Ảnh cưới</h2>
-      <!-- Chú ý: đổi các tên file bên dưới cho khớp với file trong thư mục assets của repo -->
-      <img id="img1" src="https://canhthanh131094-cpu.github.io/thiep-cuoi-harry/assets/bride.jpg" alt="Cô dâu" onerror="imgError(this)">
-      <img id="img2" src="https://canhthanh131094-cpu.github.io/thiep-cuoi-harry/assets/groom.jpg" alt="Chú rể" onerror="imgError(this)">
-      <p id="imgNote" data-i18n="img_note">Nếu ảnh không hiển thị, kiểm tra tên file (viết hoa/thường) và đã commit ảnh lên GitHub chưa.</p>
-    </section>
+    <h1 id="title">Thiệp Mời Lễ Cưới</h1>
+    <h2 id="couple">💍 Cảnh Thành & 💐 Đặng Loan</h2>
 
-    <section class="controls">
-      <div class="rsvp">
-        <h3 data-i18n="rsvp_title">Xác nhận tham dự</h3>
+    <img src="anhcuoi.jpg" alt="Wedding Photo" class="photo-frame" onerror="this.src='https://via.placeholder.com/400x600?text=Anh+Cuoi+Dang+Tai'">
 
-        <!-- FORM: dùng Google Forms formResponse endpoint -->
-        <!-- Thay FORM_ID và entry.XXXXX theo hướng dẫn ở đầu -->
-        <form id="rsvpForm" method="POST" target="hidden_iframe"
-              action="https://docs.google.com/forms/d/e/1FAIpQLSes1GuX-Zzefo0YcbXN3iocZzHySsr63n_SBYuozVbK3qPBHQ/formResponse">
-          <!-- Replace the name values with your actual entry IDs from Google Forms -->
-          <label for="name" data-i18n="label_name">Họ và tên</label>
-          <input id="name" name="entry.REPLACE_WITH_ENTRY_ID_NAME" required>
+    <p><strong id="label-time">⏰ Thời gian:</strong> <span id="val-time">10:30 – Thứ 7, 07/02/2026</span></p>
+    <p><strong id="label-place">📍 Địa điểm:</strong> <span id="val-place">Xóm 2, xã Yên Thành, Nghệ An</span></p>
 
-          <label for="email" data-i18n="label_email">Email</label>
-          <input id="email" name="entry.REPLACE_WITH_ENTRY_ID_EMAIL" type="email">
+    <hr>
+    <h3 id="rsvp-title">Xác nhận tham dự</h3>
+    
+    <form id="wedding-form">
+        <label id="label-name">Họ tên:</label>
+        <input type="text" name="entry.180425712" placeholder="Nhập họ tên" required>
+        
+        <label id="label-phone">Số điện thoại:</label>
+        <input type="tel" name="entry.1039867057" placeholder="Nhập số điện thoại" required>
+        
+        <label id="label-attend">Tham dự:</label>
+        <select name="entry.1352482390">
+            <option value="Tham dự" id="opt-yes">Tham dự</option>
+            <option value="Không tham dự" id="opt-no">Không tham dự</option>
+        </select>
+        
+        <button type="submit" id="submit-btn">Gửi xác nhận</button>
+    </form>
+    <p id="msg" style="display:none; color: green; font-weight: bold;"></p>
+</div>
 
-          <label for="message" data-i18n="label_message">Lời chúc / Ghi chú</label>
-          <textarea id="message" name="entry.REPLACE_WITH_ENTRY_ID_MESSAGE" rows="4"></textarea>
+<audio id="bg-music" loop>
+    <source src="nhaccuoi.mp3" type="audio/mpeg">
+</audio>
 
-          <div style="margin-top:10px;">
-            <button id="submitBtn" type="submit" data-i18n="btn_confirm">Xác nhận</button>
-            <span id="status"></span>
-          </div>
-        </form>
-
-        <!-- iframe ẩn để submit form tới Google Forms (tránh redirect trình duyệt) -->
-        <iframe name="hidden_iframe" class="hidden-iframe" id="hidden_iframe"></iframe>
-
-        <p style="margin-top:10px; font-size:0.9em;" data-i18n="rsvp_note">
-          Nếu form không gửi được từ trang tĩnh, hãy chỉnh entry IDs hoặc dùng "Get pre-filled link" trên Google Forms.
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Audio: đặt file audio vào assets/music.mp3 (hoặc đổi đường dẫn) -->
-  <audio id="bgAudio" src="https://canhthanh131094-cpu.github.io/thiep-cuoi-harry/assets/music.mp3" loop playsinline></audio>
-
-  <!-- Overlay bắt tương tác để bật nhạc (trình duyệt chặn autoplay) -->
-  <div id="playOverlay" style="display:none;">
-    <div style="text-align:center">
-      <p id="overlayText" data-i18n="overlay_text">Nhấn để bắt đầu trải nghiệm (mở nhạc)</p>
-      <button id="overlayBtn">Bắt đầu</button>
-    </div>
-  </div>
-
-  <script>
-    // -----------------------
-    // CẤU HÌNH CHỈNH SỬA:
-    // - Thay entry.REPLACE_WITH_ENTRY_ID_* bằng entry IDs thực tế của Google Form
-    // - Đảm bảo assets/* (ảnh, music.mp3) đã được commit lên repo
-    // -----------------------
-
-    // i18n dữ liệu
-    const I18N = {
-      vi: {
-        title: 'Thiệp cưới',
-        lang_label: 'Ngôn ngữ:',
-        gallery_title: 'Ảnh cưới',
-        img_note: 'Nếu ảnh không hiển thị, kiểm tra tên file (viết hoa/thường) và đã commit ảnh lên GitHub chưa.',
-        rsvp_title: 'Xác nhận tham dự',
-        label_name: 'Họ và tên',
-        label_email: 'Email',
-        label_message: 'Lời chúc / Ghi chú',
-        btn_confirm: 'Xác nhận',
-        rsvp_note: 'Nếu form không gửi được từ trang tĩnh, hãy chỉnh entry IDs hoặc dùng "Get pre-filled link" trên Google Forms.',
-        overlay_text: 'Nhấn để bắt đầu trải nghiệm (mở nhạc)'
-      },
-      en: {
-        title: 'Wedding Invitation',
-        lang_label: 'Language:',
-        gallery_title: 'Wedding photos',
-        img_note: 'If images do not show, check filenames (case-sensitive) and that images are committed to GitHub.',
-        rsvp_title: 'RSVP',
-        label_name: 'Full name',
-        label_email: 'Email',
-        label_message: 'Message / Note',
-        btn_confirm: 'Confirm',
-        rsvp_note: 'If the form cannot be submitted, update entry IDs or use Google Form "Get pre-filled link".',
-        overlay_text: 'Tap to start (play music)'
-      },
-      zh: {
-        title: '婚礼请帖',
-        lang_label: '语言:',
-        gallery_title: '婚礼照片',
-        img_note: '如果图片未显示，请检查文件名（区分大小写）并确保已提交到 GitHub。',
-        rsvp_title: '确认出席',
-        label_name: '姓名',
-        label_email: '邮箱',
-        label_message: '祝福 / 备注',
-        btn_confirm: '确认',
-        rsvp_note: '如果无法提交，请更新 entry IDs 或使用 Google 表单的“获取预填链接”。',
-        overlay_text: '点击开始（播放音乐）'
-      }
+<script>
+    // 1. Chức năng đổi ngôn ngữ
+    const langData = {
+        vi: {
+            title: "Thiệp Mời Lễ Cưới",
+            couple: "💍 Cảnh Thành & 💐 Đặng Loan",
+            time: "Thời gian:",
+            place: "Địa điểm:",
+            rsvp: "Xác nhận tham dự",
+            name: "Họ tên:",
+            phone: "Số điện thoại:",
+            attend: "Tham dự:",
+            yes: "Tham dự",
+            no: "Không tham dự",
+            submit: "Gửi xác nhận",
+            thanks: "Cảm ơn bạn đã xác nhận!"
+        },
+        en: {
+            title: "Wedding Invitation",
+            couple: "💍 Canh Thanh & 💐 Dang Loan",
+            time: "Time:",
+            place: "Location:",
+            rsvp: "RSVP",
+            name: "Full Name:",
+            phone: "Phone Number:",
+            attend: "Attendance:",
+            yes: "Will Attend",
+            no: "Cannot Attend",
+            submit: "Send Confirmation",
+            thanks: "Thank you for your response!"
+        },
+        zh: {
+            title: "婚礼邀请函",
+            couple: "💍 景成 & 💐 邓鸾",
+            time: "时间:",
+            place: "地点:",
+            rsvp: "确认出席",
+            name: "姓名:",
+            phone: "电话:",
+            attend: "出席:",
+            yes: "参加",
+            no: "不参加",
+            submit: "提交确认",
+            thanks: "感谢您的确认！"
+        }
     };
 
-    // gán i18n
-    function setLang(lang) {
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (I18N[lang] && I18N[lang][key]) el.textContent = I18N[lang][key];
-      });
-      currentLang = lang;
+    function changeLang(lang) {
+        document.getElementById('title').innerText = langData[lang].title;
+        document.getElementById('couple').innerText = langData[lang].couple;
+        document.getElementById('label-time').innerText = langData[lang].time;
+        document.getElementById('label-place').innerText = langData[lang].place;
+        document.getElementById('rsvp-title').innerText = langData[lang].rsvp;
+        document.getElementById('label-name').innerText = langData[lang].name;
+        document.getElementById('label-phone').innerText = langData[lang].phone;
+        document.getElementById('label-attend').innerText = langData[lang].attend;
+        document.getElementById('opt-yes').innerText = langData[lang].yes;
+        document.getElementById('opt-no').innerText = langData[lang].no;
+        document.getElementById('submit-btn').innerText = langData[lang].submit;
+        
+        // Tự động phát nhạc khi người dùng tương tác (nhấn nút đổi ngôn ngữ)
+        startMusic();
     }
 
-    document.getElementById('btn-vi').addEventListener('click', () => setLang('vi'));
-    document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
-    document.getElementById('btn-zh').addEventListener('click', () => setLang('zh'));
-
-    let currentLang = 'vi';
-    setLang(currentLang);
-
-    // xử lý ảnh nếu không load được
-    function imgError(img) {
-      console.warn('Image failed to load:', img.src);
-      img.src = 'https://via.placeholder.com/800x500?text=No+Image';
-      img.alt = 'No image';
-      const note = document.getElementById('imgNote');
-      if (note) note.style.color = 'red';
+    // 2. Chức năng nhạc
+    function startMusic() {
+        const music = document.getElementById('bg-music');
+        if (music.paused) {
+            music.play().catch(e => console.log("Trình duyệt chặn tự động phát nhạc"));
+        }
     }
-    window.imgError = imgError; // expose cho onerror attribute
 
-    // FORM: hiển thị message thành công
-    const rsvpForm = document.getElementById('rsvpForm');
-    const statusEl = document.getElementById('status');
-    const submitBtn = document.getElementById('submitBtn');
+    // Phát nhạc khi nhấn bất kỳ đâu trên trang
+    document.body.addEventListener('click', startMusic, { once: true });
 
-    rsvpForm.addEventListener('submit', function(e) {
-      // Để an toàn không block submit mặc định (submit sẽ gửi vào iframe ẩn)
-      statusEl.textContent = 'Đang gửi...';
-      submitBtn.disabled = true;
+    // 3. Xử lý gửi Form về Google Sheet không load lại trang
+    const form = document.getElementById('wedding-form');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Đang gửi...";
 
-      // Sau 1.5s giả định submit xong (Google Forms redirect/response không trả JSON vì dùng iframe)
-      setTimeout(() => {
-        statusEl.textContent = 'Đã gửi! Cảm ơn bạn.';
-        submitBtn.disabled = false;
-        // reset form nếu muốn:
-        // rsvpForm.reset();
-      }, 1500);
+        const formData = new FormData(form);
+        const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSes1GuX-Zzefo0YcbXN3iocZzHySsr63n_SBYuozVbK3qPBHQ/formResponse";
 
-      // Nếu bạn muốn dùng AJAX fetch thay vì form submit trực tiếp, bạn có thể
-      // tạo body bằng URLSearchParams và fetch tới same action (không đảm bảo CORS).
-      // Ví dụ (không được bật mặc định):
-      // e.preventDefault();
-      // const data = new URLSearchParams(new FormData(rsvpForm)).toString();
-      // fetch(rsvpForm.action, { method: 'POST', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: data, mode:'no-cors' })
-      //   .then(()=>{/* show success */})
-      //   .catch(()=>{/* show error */});
-    });
-
-    // Audio autoplay handling:
-    const audio = document.getElementById('bgAudio');
-    const overlay = document.getElementById('playOverlay');
-    const overlayBtn = document.getElementById('overlayBtn');
-    const overlayText = document.getElementById('overlayText');
-
-    // Thử autoplay im lặng => nếu được, bật overlay để unmute khi user tương tác
-    function tryAutoplay() {
-      // Thử play muted (nhiều trình duyệt cho phép autoplay nếu muted)
-      audio.muted = true;
-      const p = audio.play();
-      if (p !== undefined) {
-        p.then(() => {
-          // autoplay muted thành công -> hiển thị overlay yêu cầu người dùng nhấn để bật âm thanh
-          overlay.style.display = 'flex';
-        }).catch((err) => {
-          // autoplay bị chặn -> hiển thị overlay để người dùng bắt buộc nhấn
-          overlay.style.display = 'flex';
-          console.warn('Autoplay blocked:', err);
+        fetch(googleFormUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+        }).then(() => {
+            document.getElementById('msg').style.display = 'block';
+            document.getElementById('msg').innerText = "Gửi thành công! Cảm ơn bạn.";
+            form.reset();
+            submitBtn.innerText = "Đã gửi";
+        }).catch(err => {
+            alert("Có lỗi xảy ra, vui lòng thử lại.");
+            submitBtn.disabled = false;
         });
-      } else {
-        overlay.style.display = 'flex';
-      }
-    }
-
-    overlayBtn.addEventListener('click', () => {
-      // chuyển sang unmuted và play
-      audio.muted = false;
-      audio.play().catch(err => console.warn('Play failed:', err));
-      overlay.style.display = 'none';
     });
+</script>
 
-    // Nếu người dùng click anywhere, cũng mở nhạc (dùng 1 lần)
-    function handleFirstInteraction() {
-      audio.muted = false;
-      audio.play().catch(()=>{});
-      document.removeEventListener('click', handleFirstInteraction);
-    }
-    document.addEventListener('click', handleFirstInteraction, { once: true });
-
-    // Khởi động thử autoplay sau DOM loaded
-    document.addEventListener('DOMContentLoaded', tryAutoplay);
-
-    // Tips debug:
-    // 1) Nếu ảnh vẫn lỗi: mở DevTools -> Network -> reload -> kiểm tra đường dẫn ảnh trả 404 hay 200.
-    // 2) Nếu form không ghi vào sheet: kiểm tra entry IDs, hoặc mở Google Form > Get pre-filled link để lấy entry IDs.
-    // 3) Nếu toggle ngôn ngữ không thay đổi: chắc chắn không có lỗi JS khác (mở Console).
-
-  </script>
 </body>
 </html>
