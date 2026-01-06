@@ -1,183 +1,145 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Invitation | Thiệp Cưới Online</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
 
-  <!-- QR Code -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f2ee;
-      margin: 0;
-      padding: 0;
-    }
-    .card {
-      max-width: 720px;
-      margin: 30px auto;
-      background: #ffffff;
-      border-radius: 14px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      padding: 30px;
-      text-align: center;
-    }
-    h1 { color: #b76e79; }
-    h2 { font-weight: normal; margin: 6px 0; }
-    .lang-switch { margin-bottom: 15px; }
-    button.lang {
-      margin: 0 5px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      cursor: pointer;
-    }
-    .info { line-height: 1.8; margin: 20px 0; }
-    .divider { margin: 25px 0; height: 1px; background: #e0e0e0; }
-    img.photo { width: 100%; border-radius: 12px; margin: 15px 0; }
-    iframe { width: 100%; height: 300px; border-radius: 12px; border: 0; }
-    form { text-align: left; margin-top: 20px; }
-    label { font-weight: bold; display: block; margin-bottom: 6px; }
-    input, select, button.submit {
-      width: 100%; padding: 10px; margin-bottom: 14px;
-      border-radius: 6px; border: 1px solid #ccc;
-    }
-    button.submit {
-      background: #b76e79;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    #musicBtn {
-      margin-bottom: 15px;
-      padding: 8px 14px;
-      border-radius: 20px;
-      border: none;
-      background: #b76e79;
-      color: #fff;
-      cursor: pointer;
-    }
-    .note { font-size: 13px; color: #666; text-align: center; }
-    #qrcode { margin-top: 20px; display: flex; justify-content: center; }
-  </style>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+}
+h1 { color: #c0392b; }
+label { display:block; margin-top:10px; text-align:left; }
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+}
+button {
+  background:#c0392b;
+  color:white;
+  border:none;
+  margin-top:15px;
+  font-size:16px;
+  cursor:pointer;
+}
+.lang button {
+  width:auto;
+  margin:5px;
+}
+</style>
 </head>
 
 <body>
 
+<div class="container">
+
+<!-- 🌐 LANGUAGE -->
+<div class="lang">
+  <button onclick="setLang('vi')">🇻🇳 VI</button>
+  <button onclick="setLang('en')">🇬🇧 EN</button>
+  <button onclick="setLang('zh')">🇨🇳 中文</button>
+</div>
+
+<h1 id="title">Thiệp Cưới</h1>
+
+<p id="names">💍 Chú rể & Cô dâu</p>
+
+<p id="time">⏰ Thời gian: 10:30 – Thứ 7, 07/02/2026</p>
+<p id="place">📍 Địa điểm: Xóm 2, xã Yên Thành, Nghệ An</p>
+
 <!-- 🎵 MUSIC -->
-<audio id="bgm" loop>
+<audio autoplay loop controls style="width:100%; margin:10px 0">
   <source src="nhaccuoi.mp3" type="audio/mpeg">
 </audio>
-<button id="musicBtn">🎵 Bật nhạc</button>
 
-<div class="card">
-  <div class="lang-switch">
-    <button class="lang" onclick="setLang('vi')">🇻🇳 Việt</button>
-    <button class="lang" onclick="setLang('en')">🇬🇧 English</button>
-    <button class="lang" onclick="setLang('zh')">🇨🇳 中文</button>
-  </div>
+<!-- 🗺 GOOGLE MAP -->
+<iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d916.1961618975104!2d105.44576393415441!3d19.012184735595962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313767e78c0f22f5%3A0x3618131dece75d2e!2zUGjDsm5nIGtow6FtIGNodXnDqm4gc-G6o24gQsOhYyBT4bu5IE5n4bujaQ!5e0!3m2!1svi!2s!4v1767626746999"
+  width="100%"
+  height="300"
+  style="border:0; border-radius:12px"
+  allowfullscreen=""
+  loading="lazy">
+</iframe>
 
-  <h1 id="title"></h1>
-  <h2>💍 Cảnh Thành & 💐 Đặng Loan</h2>
+<!-- 📝 FORM -->
+<h2 id="confirm">Xác nhận tham dự</h2>
 
-  <img class="photo" src="anhcuoi.png" alt="Wedding Photo" />
+<form
+  action="https://docs.google.com/forms/d/e/1FAIpQLSes1GuX-Zzefo0YcbXN3iocZzHySsr63n_SBYuozVbK3qPBHQ/formResponse"
+  method="POST"
+  target="hidden_iframe"
+  onsubmit="alert('Đã gửi xác nhận!');"
+>
 
-  <div class="info">
-    <p id="inviteText"></p>
-    <p id="timeText"></p>
-    <p id="locationText"></p>
-  </div>
+<label id="lblName">Họ tên</label>
+<input type="text" name="entry.1095284742" required>
 
-  <!-- GOOGLE MAP -->
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d916.1961618975104!2d105.44576393415441!3d19.012184735595962"
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+<label id="lblPhone">Số điện thoại</label>
+<input type="text" name="entry.805429574" required>
 
-  <div class="divider"></div>
+<label id="lblAttend">Tham dự</label>
+<select name="entry.1675628208" required>
+  <option value="">-- Chọn --</option>
+  <option value="Yes">Tham dự</option>
+  <option value="No">Không tham dự</option>
+</select>
 
-  <h3 id="confirm"></h3>
+<button type="submit" id="submitBtn">Gửi xác nhận</button>
+</form>
 
-  <!-- GOOGLE FORM -->
-  <form
-    action="https://docs.google.com/forms/d/e/1FAIpQLSes1GuX-Zzefo0YcbXN3iocZzHySsr63n_SBYuozVbK3qPBHQ/formResponse"
-    method="POST"
-    target="hidden_iframe">
+<iframe name="hidden_iframe" style="display:none;"></iframe>
 
-    <label>Họ tên / Name</label>
-    <input name="entry.1095284742" required>
-
-    <label>Số điện thoại / Phone</label>
-    <input name="entry.805429574" required>
-
-    <label>Tham dự / Attendance</label>
-    <select name="entry.1675628208" required>
-      <option value="Yes">Tham dự / Yes</option>
-      <option value="No">Không tham dự / No</option>
-    </select>
-
-    <button type="submit" class="submit">Gửi xác nhận</button>
-  </form>
-
-  <iframe name="hidden_iframe" style="display:none"></iframe>
-
-  <div id="qrcode"></div>
-  <p class="note">Quét QR để mở thiệp 💖</p>
 </div>
 
 <script>
-/* 🌐 LANGUAGE */
-const text = {
-  vi: {
-    title: "Thiệp Mời Lễ Cưới",
-    invite: "Trân trọng kính mời bạn đến tham dự lễ cưới của chúng tôi",
-    time: "⏰ Thời gian: 10:30 – Thứ 7, 07/02/2026",
-    location: "📍 Địa điểm: Xóm 2, xã Yên Thành, Nghệ An",
-    confirm: "Xác nhận tham dự"
-  },
-  en: {
-    title: "Wedding Invitation",
-    invite: "You are warmly invited to our wedding ceremony",
-    time: "⏰ Time: 10:30 AM – Saturday, Feb 7, 2026",
-    location: "📍 Location: Hamlet 2, Yen Thanh Commune, Nghe An, Vietnam",
-    confirm: "RSVP"
-  },
-  zh: {
-    title: "婚礼邀请函",
-    invite: "诚挚邀请您参加我们的婚礼",
-    time: "⏰ 时间：2026年2月7日（星期六）10:30",
-    location: "📍 地点：越南义安省延城县延成社二村",
-    confirm: "出席确认"
-  }
-};
-
 function setLang(lang) {
-  document.getElementById("title").innerText = text[lang].title;
-  document.getElementById("inviteText").innerText = text[lang].invite;
-  document.getElementById("timeText").innerText = text[lang].time;
-  document.getElementById("locationText").innerText = text[lang].location;
-  document.getElementById("confirm").innerText = text[lang].confirm;
+  if(lang==='vi'){
+    title.innerText="Thiệp Cưới";
+    names.innerText="💍 Chú rể & Cô dâu";
+    time.innerText="⏰ Thời gian: 10:30 – Thứ 7, 07/02/2026";
+    place.innerText="📍 Địa điểm: Xóm 2, xã Yên Thành, Nghệ An";
+    confirm.innerText="Xác nhận tham dự";
+    lblName.innerText="Họ tên";
+    lblPhone.innerText="Số điện thoại";
+    lblAttend.innerText="Tham dự";
+    submitBtn.innerText="Gửi xác nhận";
+  }
+  if(lang==='en'){
+    title.innerText="Wedding Invitation";
+    names.innerText="💍 Groom & Bride";
+    time.innerText="⏰ Time: 10:30 AM – Saturday, Feb 7, 2026";
+    place.innerText="📍 Location: Yen Thanh Commune, Nghe An";
+    confirm.innerText="RSVP";
+    lblName.innerText="Full Name";
+    lblPhone.innerText="Phone Number";
+    lblAttend.innerText="Attendance";
+    submitBtn.innerText="Submit";
+  }
+  if(lang==='zh'){
+    title.innerText="婚礼邀请函";
+    names.innerText="💍 新郎 & 新娘";
+    time.innerText="⏰ 时间：2026年2月7日 周六 10:30";
+    place.innerText="📍 地点：越南 义安省 安城县";
+    confirm.innerText="确认出席";
+    lblName.innerText="姓名";
+    lblPhone.innerText="电话号码";
+    lblAttend.innerText="是否出席";
+    submitBtn.innerText="提交确认";
+  }
 }
-
-setLang("vi");
-
-/* 🎵 MUSIC */
-document.getElementById("musicBtn").addEventListener("click", () => {
-  const bgm = document.getElementById("bgm");
-  bgm.play().then(() => {
-    document.getElementById("musicBtn").innerText = "🔊 Đang phát nhạc";
-  });
-});
-
-/* 📱 QR CODE */
-new QRCode(document.getElementById("qrcode"), {
-  text: window.location.href,
-  width: 128,
-  height: 128
-});
 </script>
 
 </body>
