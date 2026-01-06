@@ -49,11 +49,22 @@
     #qrcode { margin-top: 20px; display: flex; justify-content: center; }
   </style>
 </head>
+<script>
+const bgm = document.getElementById("bgm");
+const btn = document.getElementById("musicBtn");
+
+btn.addEventListener("click", () => {
+  bgm.play();
+  btn.innerText = "🔊 Đang phát nhạc";
+});
+</script>
 <body>
 
-<audio autoplay loop controls style="width:100%">
+<audio id="bgm" loop>
   <source src="nhaccuoi.mp3" type="audio/mpeg">
 </audio>
+
+<button id="musicBtn">🎵 Bật nhạc</button>
 
 <div class="card">
   <div class="lang-switch">
