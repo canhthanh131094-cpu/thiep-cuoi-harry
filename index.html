@@ -1,164 +1,138 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation - Cảnh Thành & Đặng Loan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Quicksand', sans-serif; text-align: center; background-color: #fdf5f5; color: #333; margin: 0; padding: 20px; }
-        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { font-family: 'Dancing Script', cursive; color: #d63384; font-size: 2.5em; }
-        .photo-frame { width: 100%; border-radius: 15px; margin: 20px 0; border: 5px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .lang-switch { margin-bottom: 20px; }
-        button { padding: 10px 15px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; background: #d63384; color: white; font-weight: bold; }
-        form { display: flex; flex-direction: column; text-align: left; gap: 10px; margin-top: 20px; }
-        input, select { padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-        #submit-btn { background: #28a745; margin-top: 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation | Thiệp Cưới Online</title>
+
+  <!-- QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f2ee;
+      margin: 0;
+      padding: 0;
+    }
+    .card {
+      max-width: 720px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      padding: 30px;
+      text-align: center;
+    }
+    h1 { color: #b76e79; }
+    h2 { font-weight: normal; margin: 6px 0; }
+    .lang-switch { margin-bottom: 15px; }
+    button.lang {
+      margin: 0 5px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .info { line-height: 1.8; margin: 20px 0; }
+    .divider { margin: 25px 0; height: 1px; background: #e0e0e0; }
+    img.photo { width: 100%; border-radius: 12px; margin: 15px 0; }
+    iframe { width: 100%; height: 300px; border-radius: 12px; border: 0; }
+    form { text-align: left; margin-top: 20px; }
+    label { font-weight: bold; display: block; margin-bottom: 6px; }
+    input, select, button.submit {
+      width: 100%; padding: 10px; margin-bottom: 14px;
+      border-radius: 6px; border: 1px solid #ccc;
+    }
+    button.submit { background: #b76e79; color: #fff; font-size: 16px; cursor: pointer; }
+    .note { font-size: 13px; color: #666; text-align: center; }
+    #qrcode { margin-top: 20px; display: flex; justify-content: center; }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="lang-switch">
-        <button onclick="changeLang('vi')">🇻🇳 VI</button>
-        <button onclick="changeLang('en')">🇬🇧 EN</button>
-        <button onclick="changeLang('zh')">🇨🇳 中文</button>
-    </div>
-
-    <h1 id="title">Thiệp Mời Lễ Cưới</h1>
-    <h2 id="couple">💍 Cảnh Thành & 💐 Đặng Loan</h2>
-
-    <img src="anhcuoi.jpg" alt="Wedding Photo" class="photo-frame" onerror="this.src='https://via.placeholder.com/400x600?text=Anh+Cuoi+Dang+Tai'">
-
-    <p><strong id="label-time">⏰ Thời gian:</strong> <span id="val-time">10:30 – Thứ 7, 07/02/2026</span></p>
-    <p><strong id="label-place">📍 Địa điểm:</strong> <span id="val-place">Xóm 2, xã Yên Thành, Nghệ An</span></p>
-
-    <hr>
-    <h3 id="rsvp-title">Xác nhận tham dự</h3>
-    
-    <form id="wedding-form">
-        <label id="label-name">Họ tên:</label>
-        <input type="text" name="entry.180425712" placeholder="Nhập họ tên" required>
-        
-        <label id="label-phone">Số điện thoại:</label>
-        <input type="tel" name="entry.1039867057" placeholder="Nhập số điện thoại" required>
-        
-        <label id="label-attend">Tham dự:</label>
-        <select name="entry.1352482390">
-            <option value="Tham dự" id="opt-yes">Tham dự</option>
-            <option value="Không tham dự" id="opt-no">Không tham dự</option>
-        </select>
-        
-        <button type="submit" id="submit-btn">Gửi xác nhận</button>
-    </form>
-    <p id="msg" style="display:none; color: green; font-weight: bold;"></p>
-</div>
-
-<audio id="bg-music" loop>
-    <source src="nhaccuoi.mp3" type="audio/mpeg">
+<audio autoplay loop controls style="width:100%">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
+<div class="card">
+  <div class="lang-switch">
+    <button class="lang" onclick="setLang('vi')">🇻🇳 Việt</button>
+    <button class="lang" onclick="setLang('en')">🇬🇧 English</button>
+    <button class="lang" onclick="setLang('zh')">🇨🇳 中文</button>
+  </div>
+
+  <h1 id="title">Thiệp Mời Lễ Cưới</h1>
+  <h2>💍 Cảnh Thành & 💐 Đặng Loan</h2>
+
+  <img class="photo" src="https://drive.google.com/file/d/1erYznwtIJeWVrBmdqo-mSzH7GA0hwo4r/view?usp=sharing" alt="Wedding Photo" />
+
+  <div class="info" id="info">
+    <p>Trân trọng kính mời bạn đến tham dự lễ cưới của chúng tôi</p>
+    <p><strong>⏰ Thời gian:</strong> 10:30 – Thứ 7, 07/02/2026</p>
+    <p><strong>📍 Địa điểm:</strong>xóm 2, xã Yên Thành, Nghệ An</p>
+  </div>
+
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d916.1961618975104!2d105.44576393415441!3d19.012184735595962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313767e78c0f22f5%3A0x3618131dece75d2e!2zUGjDsm5nIGtow6FtIGNodXnDqm4gc-G6o24gQsOhYyBT4bu5IE5n4bujaQ!5e0!3m2!1svi!2s!4v1767626746999!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+  <div class="divider"></div>
+
+  <h3 id="confirm">Xác nhận tham dự</h3>
+
+  <!-- GOOGLE SHEET FORM -->
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLSes1GuX-Zzefo0YcbXN3iocZzHySsr63n_SBYuozVbK3qPBHQ
+/formResponse" method="POST" target="hidden_iframe">
+    <label>Họ tên / Name</label>
+    <input name="entry.1095284742" required />
+
+    <label>Số điện thoại / Phone</label>
+    <input name="entry.805429574" required />
+
+    <label>Tham dự / Attendance</label>
+    <select name="entry.1675628208">
+      <option value="Yes">Tham dự / Yes</option>
+      <option value="No">Không tham dự / No</option>
+    </select>
+
+    <button class="submit">Gửi xác nhận</button>
+  </form>
+  <iframe name="hidden_iframe" style="display:none"></iframe>
+
+  <div id="qrcode"></div>
+
+  <p class="note">Quét QR để mở thiệp 💖</p>
+</div>
+
 <script>
-    // 1. Chức năng đổi ngôn ngữ
-    const langData = {
-        vi: {
-            title: "Thiệp Mời Lễ Cưới",
-            couple: "💍 Cảnh Thành & 💐 Đặng Loan",
-            time: "Thời gian:",
-            place: "Địa điểm:",
-            rsvp: "Xác nhận tham dự",
-            name: "Họ tên:",
-            phone: "Số điện thoại:",
-            attend: "Tham dự:",
-            yes: "Tham dự",
-            no: "Không tham dự",
-            submit: "Gửi xác nhận",
-            thanks: "Cảm ơn bạn đã xác nhận!"
-        },
-        en: {
-            title: "Wedding Invitation",
-            couple: "💍 Canh Thanh & 💐 Dang Loan",
-            time: "Time:",
-            place: "Location:",
-            rsvp: "RSVP",
-            name: "Full Name:",
-            phone: "Phone Number:",
-            attend: "Attendance:",
-            yes: "Will Attend",
-            no: "Cannot Attend",
-            submit: "Send Confirmation",
-            thanks: "Thank you for your response!"
-        },
-        zh: {
-            title: "婚礼邀请函",
-            couple: "💍 景成 & 💐 邓鸾",
-            time: "时间:",
-            place: "地点:",
-            rsvp: "确认出席",
-            name: "姓名:",
-            phone: "电话:",
-            attend: "出席:",
-            yes: "参加",
-            no: "不参加",
-            submit: "提交确认",
-            thanks: "感谢您的确认！"
-        }
-    };
-
-    function changeLang(lang) {
-        document.getElementById('title').innerText = langData[lang].title;
-        document.getElementById('couple').innerText = langData[lang].couple;
-        document.getElementById('label-time').innerText = langData[lang].time;
-        document.getElementById('label-place').innerText = langData[lang].place;
-        document.getElementById('rsvp-title').innerText = langData[lang].rsvp;
-        document.getElementById('label-name').innerText = langData[lang].name;
-        document.getElementById('label-phone').innerText = langData[lang].phone;
-        document.getElementById('label-attend').innerText = langData[lang].attend;
-        document.getElementById('opt-yes').innerText = langData[lang].yes;
-        document.getElementById('opt-no').innerText = langData[lang].no;
-        document.getElementById('submit-btn').innerText = langData[lang].submit;
-        
-        // Tự động phát nhạc khi người dùng tương tác (nhấn nút đổi ngôn ngữ)
-        startMusic();
+  const text = {
+    vi: {
+      title: 'Thiệp Mời Lễ Cưới',
+      info: 'Trân trọng kính mời bạn đến tham dự lễ cưới của chúng tôi',
+      confirm: 'Xác nhận tham dự'
+    },
+    en: {
+      title: 'Wedding Invitation',
+      info: 'You are warmly invited to our wedding ceremony',
+      confirm: 'RSVP'
+    },
+    zh: {
+      title: '婚礼邀请函',
+      info: '诚挚邀请您参加我们的婚礼',
+      confirm: '出席确认'
     }
+  };
 
-    // 2. Chức năng nhạc
-    function startMusic() {
-        const music = document.getElementById('bg-music');
-        if (music.paused) {
-            music.play().catch(e => console.log("Trình duyệt chặn tự động phát nhạc"));
-        }
-    }
+  function setLang(lang) {
+    document.getElementById('title').innerText = text[lang].title;
+    document.getElementById('info').children[0].innerText = text[lang].info;
+    document.getElementById('confirm').innerText = text[lang].confirm;
+  }
 
-    // Phát nhạc khi nhấn bất kỳ đâu trên trang
-    document.body.addEventListener('click', startMusic, { once: true });
-
-    // 3. Xử lý gửi Form về Google Sheet không load lại trang
-    const form = document.getElementById('wedding-form');
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const submitBtn = document.getElementById('submit-btn');
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Đang gửi...";
-
-        const formData = new FormData(form);
-        const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSes1GuX-Zzefo0YcbXN3iocZzHySsr63n_SBYuozVbK3qPBHQ/formResponse";
-
-        fetch(googleFormUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formData
-        }).then(() => {
-            document.getElementById('msg').style.display = 'block';
-            document.getElementById('msg').innerText = "Gửi thành công! Cảm ơn bạn.";
-            form.reset();
-            submitBtn.innerText = "Đã gửi";
-        }).catch(err => {
-            alert("Có lỗi xảy ra, vui lòng thử lại.");
-            submitBtn.disabled = false;
-        });
-    });
+  new QRCode(document.getElementById('qrcode'), {
+    text: window.location.href,
+    width: 128,
+    height: 128
+  });
 </script>
 
 </body>
